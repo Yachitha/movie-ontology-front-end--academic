@@ -1,0 +1,193 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container-fluid">
+  <nav class="navbar navbar-dark bg-dark sticky-top">
+    <a class="navbar-brand" href="/">Movie Ontology</a>
+  </nav>
+  <div class="row mt-1">
+    <div class="col-md-3">
+      <div class="card bg-light">
+        <div class="card-header">
+          <h5>Filter By Role</h5>
+        </div>
+        <div class="card-body pre-scrollable">
+          <div class="group-gap">
+            <div class="d-block my-3">
+              <div class="mb-3">
+                <label>
+                  <select [(ngModel)]="selectedActor" class="custom-select form-control" (change)="selectActor()">
+                    <option value="">Choose an Actor</option>
+                    <option *ngFor="let actor of Actor" [ngValue]="actor">{{ actor.object }}</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="group-gap">
+            <div class="d-block my-3">
+              <div class="mb-3">
+                <label>
+                  <select [(ngModel)]="selectedActress" class="custom-select form-control" (change)="selectActress()">
+                    <option value="">Choose an Actress</option>
+                    <option *ngFor="let act of Actress" [ngValue]="act">{{ act.object }}</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="group-gap">
+            <div class="d-block my-3">
+              <div class="mb-3">
+                <label>
+                  <select [(ngModel)]="selectedDirector" class="custom-select form-control" (change)="selectDirector()">
+                    <option value="">Choose a Director</option>
+                    <option *ngFor="let d of Director" [ngValue]="d">{{ d.object }}</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="group-gap">
+            <div class="d-block my-3">
+              <div class="mb-3">
+                <label>
+                  <select [(ngModel)]="selectedArtEditor" class="custom-select form-control"
+                          (change)="selectArtDirector()">
+                    <option value="">Choose a Art Director</option>
+                    <option *ngFor="let ad of ArtDirector" [ngValue]="ad">{{ ad.object }}</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="group-gap">
+            <div class="d-block my-3">
+              <div class="mb-3">
+                <label>
+                  <select [(ngModel)]="selectedEditor" class="custom-select form-control" (change)="selectEditor()">
+                    <option value="">Choose an Editor</option>
+                    <option *ngFor="let ed of Editor" [ngValue]="ed">{{ ed.object }}</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="group-gap">
+            <div class="d-block my-3">
+              <div class="mb-3">
+                <label>
+                  <select [(ngModel)]="selectedCostumeDesigner" class="custom-select form-control"
+                          (change)="selectCostumeDesigner()">
+                    <option value="">Choose a Costume Designer</option>
+                    <option *ngFor="let cd of CostumeDesigner" [ngValue]="cd">{{ cd.object }}</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="group-gap">
+            <div class="d-block my-3">
+              <div class="mb-3">
+                <label>
+                  <select [(ngModel)]="selectedWriter" class="custom-select form-control" (change)="selectWriter()">
+                    <option value="">Choose a Writer</option>
+                    <option *ngFor="let w of Writer" [ngValue]="w">{{ w.object }}</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button (click)="onSubmit()" class="btn btn-success btn-lg btn-block">Query</button>
+          <button (click)="onClickReset()" class="btn btn-danger btn-lg btn-block">Reset</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="card bg-light">
+        <div class="card-header">
+          <h5>Movie List</h5>
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr mdbTableCol *ngFor="let el of elements">
+              <th scope="row">{{ el.id }}</th>
+              <td>{{ el.item }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card bg-light">
+        <div class="card-header">
+          <h5>Movie Filter</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-4">
+              <label>
+                <select [(ngModel)]="selectedGenre" class="custom-select form-control" (change)="selectGenre()">
+                  <option value="">Genre</option>
+                  <option *ngFor="let g of Genres" [ngValue]="g">{{ g.object }}</option>
+                </select>
+              </label>
+            </div>
+            <div class="col-sm-4">
+              <label>
+                <select [(ngModel)]="selectedCountry" class="custom-select form-control" (change)="selectCountry()">
+                  <option value="">Country</option>
+                  <option *ngFor="let c of Country" [ngValue]="c">{{ c.object }}</option>
+                </select>
+              </label>
+            </div>
+            <div class="col-sm-4">
+              <label>
+                <select [(ngModel)]="selectedAward" class="custom-select form-control" (change)="selectAward()">
+                  <option value="">Award</option>
+                  <option *ngFor="let a of Award" [ngValue]="a">{{ a.object }}</option>
+                </select>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="container">
+              <ul class="list-group pointer">
+                <li class="list-group-item" *ngFor="let item of Movies" (click)="selectMovie(item)">{{item.object}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="container">
+              <div class="form-group">
+                <label for="result">Selected Movie Details:</label>
+                <textarea class="form-control" rows="12" id="result" *ngFor="let item of MovieDetails">
+                  Actor: {{ item.actor }}
+                  Actress: {{ item.actress }}
+                  Art Director: {{ item.artDirector }}
+                  Director: {{ item.director }}
+                  Editor: {{ item.editor }}
+                  Costume Designer: {{ item.costumeDesigner }}
+                  Writer: {{ item.writer }}
+                </textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="py-3 mt-1 bg-dark text-white-50">
+    <div class="container text-center">
+      <small>Copyrights &copy; Opera UOM FIT-15</small>
+    </div>
+  </footer>
+</div>
